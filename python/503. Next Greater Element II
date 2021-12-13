@@ -21,16 +21,13 @@ class Solution:
         results = [-1] * len(nums)
         stack = []
         loop = 1
+        
         while loop < 3:
-            for i in range(len(nums)):
-                while stack and stack[-1][1] < nums[i]:
-                    idx, cur = stack.pop()
-                    if idx < len(nums):
-                        results[idx] = nums[i]
-                if loop == 1:
-                    stack.append((i, nums[i]))
-                else:
-                    stack.append((i+len(nums), nums[i]))
+            for idx, n in enumerate(nums):
+                while stack and stack[-1][1] < n:
+                    smaller_idx, smaller_n = stack.pop()
+                    results[smaller_idx] = n
+                stack.append((idx, n))
             loop += 1
-            
+        
         return results
