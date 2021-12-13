@@ -1,0 +1,36 @@
+# method 01 
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        new_nums = nums + nums
+        stack = []
+        results = [-1] * len(new_nums)
+        
+        for idx, n in enumerate(new_nums):
+            while stack and stack[-1][1] < n:
+                smaller_idx, smaller_n = stack.pop()
+                results[smaller_idx] = n 
+            stack.append((idx, n))
+            
+        return results[:len(nums)]
+        
+        
+        
+# method 02
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        results = [-1] * len(nums)
+        stack = []
+        loop = 1
+        while loop < 3:
+            for i in range(len(nums)):
+                while stack and stack[-1][1] < nums[i]:
+                    idx, cur = stack.pop()
+                    if idx < len(nums):
+                        results[idx] = nums[i]
+                if loop == 1:
+                    stack.append((i, nums[i]))
+                else:
+                    stack.append((i+len(nums), nums[i]))
+            loop += 1
+            
+        return results
