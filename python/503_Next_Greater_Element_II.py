@@ -1,17 +1,17 @@
 # method 01 
-class Solution:
-    def nextGreaterElements(self, nums: List[int]) -> List[int]:
-        new_nums = nums + nums
-        stack = []
-        results = [-1] * len(new_nums)
+# class Solution:
+#     def nextGreaterElements(self, nums: List[int]) -> List[int]:
+#         new_nums = nums + nums
+#         stack = []
+#         results = [-1] * len(new_nums)
         
-        for idx, n in enumerate(new_nums):
-            while stack and stack[-1][1] < n:
-                smaller_idx, smaller_n = stack.pop()
-                results[smaller_idx] = n 
-            stack.append((idx, n))
+#         for idx, n in enumerate(new_nums):
+#             while stack and stack[-1][1] < n:
+#                 smaller_idx, smaller_n = stack.pop()
+#                 results[smaller_idx] = n 
+#             stack.append((idx, n))
             
-        return results[:len(nums)]
+#         return results[:len(nums)]
         
         
         
